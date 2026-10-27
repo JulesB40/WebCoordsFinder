@@ -36,6 +36,17 @@ export default defineConfig({
         // The bundled demo is intentionally larger than Workbox's default
         // limit and must remain available to an offline installation.
         maximumFileSizeToCacheInBytes: 4 * 1024 * 1024,
+        // The automatic detector's networks (~70 MB) and ONNX Runtime binary are only
+        // fetched when it is first used, then kept for offline use. Same origin only.
+        globIgnores: ['**/ort-wasm-*.wasm'],
+        runtimeCaching: [
+          {
+            urlPattern: ({ url, sameOrigin }) =>
+              sameOrigin && (url.pathname.includes('/texrot/') || /\/ort-wasm-[^/]*\.wasm$/.test(url.pathname)),
+            handler: 'CacheFirst',
+            options: { cacheName: 'texrot-detector', expiration: { maxEntries: 16 } },
+          },
+        ],
       },
     }),
   ],

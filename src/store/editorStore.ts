@@ -1,4 +1,6 @@
 import { create } from 'zustand'
+import { buildDetectedDocument } from '../autodetect/document'
+import type { Detection } from '../autodetect/types'
 import { offsetBasis, offsetEvidenceListSchema, offsetEvidenceSchema, offsetReadiness } from '../domain/blockOffsets'
 import type { BlockOffsetEvidence, ResourcePackSettings } from '../domain/types'
 import { resourcePackSchema } from '../domain/resourcePacks'
@@ -602,6 +604,7 @@ interface EditorState {
   ) => void
   toggleEvidenceConfirmation: (evidenceId: string) => void
   applyAnalysisResults: (results: AnalysisResult[]) => void
+  applyAutoDetection: (detection: Detection) => void
   acceptProposed: () => void
   clearReviewQueue: () => void
   updateScanner: (patch: Partial<ScannerSettings>) => void
@@ -1577,6 +1580,29 @@ export const useEditorStore = create<EditorState>((set) => ({
         })
       }),
     ),
+  applyAutoDetection: (detection) =>
+    set((state) => ({
+      ...mutateDocument(state, (document) => {
+        // Automatic geometry replaces the image's lattice, so everything placed on the
+        // previous one goes with it (undo restores it).
+        const parts = buildDetectedDocument(detection)
+        document.scene = parts.scene
+        document.anchorFaceId = parts.anchorFaceId
+        document.offsets = []
+        document.scanner.compassResolved = false
+        document.scanner.directions = [...searchDirections]
+        document.evidence = parts.evidence.map((entry) => {
+          entry.stateCount = evidenceStateCount(document, entry) ?? entry.stateCount
+          // Detected rows stay proposals until a person confirms them.
+          syncProposalToThreshold(entry, document.scanner.confidenceThreshold)
+          return entry
+        })
+      }),
+      selectedEdges: [],
+      selectedEvidenceIds: [],
+      orientationDraft: null,
+      faceTab: 'review',
+    })),
   acceptProposed: () =>
     set((state) =>
       mutateDocument(state, (document) => {

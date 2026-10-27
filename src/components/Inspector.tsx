@@ -83,6 +83,72 @@ interface InspectorProps {
   busy: boolean
   onOpenImage?: () => void
   onAutoFill: (evidenceIds?: string[]) => void
+  autoDetect?: AutoDetectControls
+}
+
+export interface AutoDetectControls {
+  /** Current stage while the detector runs, null when idle. */
+  progress: string | null
+  /** fov: vertical field of view in degrees, or undefined to estimate it. */
+  onStart: (fov?: number) => void
+  onCancel: () => void
+}
+
+// Fully automatic geometry: camera, block grid and texture rotations from the screenshot
+// alone. Its results are proposals; nothing reaches the filter until a person confirms it.
+function AutoDetectPanel({ busy, controls, hasGeometry }: {
+  busy: boolean
+  controls: AutoDetectControls
+  hasGeometry: boolean
+}) {
+  const [fovText, setFovText] = useState('')
+  const fov = fovText.trim() === '' ? undefined : Number(fovText)
+  const fovValid = fov === undefined || (Number.isFinite(fov) && fov >= 30 && fov <= 110)
+  return (
+    <section className="geometry-part auto-detect" aria-label="Automatic detection">
+      <h3>Automatic detection</h3>
+      <p className="auto-detect-note">
+        Finds the camera, the block grid and the rotation of grass, dirt, sand, stone, deepslate,
+        netherrack and similar blocks directly from the screenshot. It runs entirely in this
+        browser. Detected faces are proposals: review and confirm them before exporting.
+      </p>
+      {controls.progress !== null ? (
+        <div className="auto-detect-progress" role="status">
+          <LoaderCircle className="spin" size={16} />
+          <span>{controls.progress}</span>
+          <button className="small-button" type="button" onClick={controls.onCancel}>
+            Cancel
+          </button>
+        </div>
+      ) : (
+        <>
+          <label className="auto-detect-fov">
+            <span>Field of view</span>
+            <input
+              aria-label="Field of view in degrees"
+              inputMode="decimal"
+              placeholder="Automatic"
+              value={fovText}
+              onChange={(event) => setFovText(event.target.value)}
+            />
+            <span>°</span>
+          </label>
+          {!fovValid && <p className="auto-detect-warning">Use a FOV between 30 and 110, or leave it empty.</p>}
+          <button
+            className="primary-button"
+            type="button"
+            disabled={busy || !fovValid}
+            onClick={() => controls.onStart(fov)}
+          >
+            <Sparkles size={16} /> Detect automatically
+          </button>
+          {hasGeometry && (
+            <p className="auto-detect-note">Replaces the current geometry and faces; Undo restores them.</p>
+          )}
+        </>
+      )}
+    </section>
+  )
 }
 
 function transformStyle(transform: CandidateTransform): string {
@@ -369,7 +435,7 @@ function CameraInfo() {
   )
 }
 
-function GeometryInspector() {
+function GeometryInspector({ busy = false, autoDetect }: { busy?: boolean; autoDetect?: AutoDetectControls }) {
   const scene = useEditorStore((state) => state.document.scene)
   const orientationDraft = useEditorStore((state) => state.orientationDraft)
   const selectedEdges = useEditorStore((state) => state.selectedEdges)
@@ -427,6 +493,7 @@ function GeometryInspector() {
             </button>
           </div>
         </section>
+        {autoDetect && <AutoDetectPanel busy={busy} controls={autoDetect} hasGeometry={false} />}
       </>
     )
   }
@@ -487,6 +554,7 @@ function GeometryInspector() {
           </div>
         </div>
       </section>
+      {autoDetect && <AutoDetectPanel busy={busy} controls={autoDetect} hasGeometry />}
       <section className="geometry-part world-orientation">
         <h3>World Orientation</h3>
         <div className="orientation-step-section">
@@ -1899,7 +1967,7 @@ export function Inspector(props: InspectorProps) {
   return (
     <aside className="inspector">
       <div className="inspector-scroll">
-        {step === 'grid' && <GeometryInspector />}
+        {step === 'grid' && <GeometryInspector busy={props.busy} autoDetect={props.autoDetect} />}
         {step === 'faces' && <FacesWorkspace busy={props.busy} onAutoFill={props.onAutoFill} />}
         {step === 'offsets' && <OffsetInspector busy={props.busy} />}
         {step === 'export' && <ExportInspector />}

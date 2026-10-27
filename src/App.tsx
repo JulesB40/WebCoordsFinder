@@ -13,6 +13,7 @@ import {
 import './App.css'
 import { EditorCanvas } from './components/EditorCanvas'
 import { Inspector } from './components/Inspector'
+import type { AutoDetectRequest, AutoDetectResponse } from './autodetect/protocol'
 import {
   ProjectDialog,
   type ExampleProjectState,
@@ -116,6 +117,8 @@ function App() {
   const requestedExampleIdsRef = useRef(new Set<ExampleProjectId>())
   const deletingProjectIdsRef = useRef(new Set<string>())
   const [busy, setBusy] = useState(false)
+  const [autoDetectProgress, setAutoDetectProgress] = useState<string | null>(null)
+  const cancelAutoDetectRef = useRef<(() => void) | null>(null)
   const [hydrated, setHydrated] = useState(false)
   const [activeProjectId, setActiveProjectId] = useState<string | null>(null)
   const [projects, setProjects] = useState<ProjectSummary[]>([])
@@ -139,6 +142,8 @@ function App() {
   const selectedEvidenceIds = useEditorStore((state) => state.selectedEvidenceIds)
   const loadDocument = useEditorStore((state) => state.loadDocument)
   const applyAnalysisResults = useEditorStore((state) => state.applyAnalysisResults)
+  const applyAutoDetection = useEditorStore((state) => state.applyAutoDetection)
+  const setStep = useEditorStore((state) => state.setStep)
   const setFaceTab = useEditorStore((state) => state.setFaceTab)
   const setProjectName = useEditorStore((state) => state.setProjectName)
   const setTool = useEditorStore((state) => state.setTool)
@@ -773,6 +778,74 @@ function App() {
     }
   }
 
+  // Fully automatic geometry from the screenshot (TexRotation networks, run locally in a
+  // worker). Results become proposals that still need confirmation.
+  const autoDetect = async (fov?: number) => {
+    const state = useEditorStore.getState()
+    const image = state.document.image
+    if (!image.src) {
+      notify('Open a screenshot first.', 'warning')
+      return
+    }
+    setBusy(true)
+    setAutoDetectProgress('Starting')
+    const worker = new Worker(new URL('./workers/autodetect.worker.ts', import.meta.url), {
+      type: 'module',
+    })
+    const requestId = crypto.randomUUID()
+    const request: AutoDetectRequest = {
+      type: 'detect',
+      requestId,
+      sourceUrl: new URL(image.src, globalThis.location.href).href,
+      fov,
+    }
+    try {
+      const result = await new Promise<Extract<AutoDetectResponse, { type: 'result' }> | null>(
+        (resolve, reject) => {
+          cancelAutoDetectRef.current = () => resolve(null)
+          worker.onmessage = (event: MessageEvent<AutoDetectResponse>) => {
+            const data = event.data
+            if (data.requestId !== requestId) return
+            if (data.type === 'progress') setAutoDetectProgress(data.message)
+            else if (data.type === 'result') resolve(data)
+            else reject(new Error(data.error))
+          }
+          worker.onerror = () => reject(new Error('The automatic detector could not start.'))
+          worker.postMessage(request)
+        },
+      )
+      if (!result) {
+        notify('Automatic detection cancelled.', 'info')
+        return
+      }
+      const current = useEditorStore.getState().document.image
+      // The screenshot may have been replaced while the worker ran.
+      if (current.key !== image.key) return
+      if (current.width !== result.detection.width || current.height !== result.detection.height) {
+        notify('The detected image size does not match the project image.', 'warning')
+        return
+      }
+      applyAutoDetection(result.detection)
+      setStep('faces')
+      const faces = result.detection.rows.length
+      const fovText = `${result.fovEstimated ? 'estimated ' : ''}FOV ${result.detection.fov.toFixed(1)}°`
+      notify(
+        `${faces} face${faces === 1 ? '' : 's'} detected (${fovText}, ${result.seconds.toFixed(0)} s). Review and confirm them before exporting.`,
+        'success',
+      )
+      if (result.fovEstimated && !result.wellPosed) {
+        notify('The view looks straight down, so the FOV estimate is weak; enter your FOV if the search finds nothing.', 'warning')
+      }
+    } catch (error) {
+      notify(error instanceof Error ? error.message : 'Automatic detection failed.', 'warning')
+    } finally {
+      cancelAutoDetectRef.current = null
+      worker.terminate()
+      setAutoDetectProgress(null)
+      setBusy(false)
+    }
+  }
+
   const confirmClearAllData = async () => {
     try {
       await clearAllData()
@@ -874,6 +947,11 @@ function App() {
               key={activeProjectId}
               busy={busy}
               onAutoFill={autoFill}
+              autoDetect={{
+                progress: autoDetectProgress,
+                onStart: (fov) => void autoDetect(fov),
+                onCancel: () => cancelAutoDetectRef.current?.(),
+              }}
             />
           </>
         ) : (

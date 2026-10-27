@@ -5645,3 +5645,55 @@ button:disabled {
   .topbar-content .workflow { position: static; transform: none; min-width: 0; }
   .workflow-step { min-width: 0; flex: 1; padding-inline: 10px; font-size: 13px; }
 }
+
+/* Automatic detection (Geometry stage) */
+.auto-detect-note {
+  margin: 0 0 12px;
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 1.45;
+}
+
+.auto-detect .primary-button {
+  width: 100%;
+  justify-content: center;
+}
+
+.auto-detect .primary-button + .auto-detect-note {
+  margin: 10px 0 0;
+}
+
+.auto-detect-fov {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 96px auto;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  color: #c8d2d7;
+  font-size: 11px;
+}
+
+.auto-detect-fov input {
+  height: 30px;
+  padding: 0 9px;
+  color: var(--text);
+  font-family: var(--mono);
+  background: #0d1418;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+
+.auto-detect-warning {
+  margin: -6px 0 10px;
+  color: #e3b341;
+  font-size: 10px;
+}
+
+.auto-detect-progress {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 9px;
+  color: #c8d2d7;
+  font-size: 11px;
+}

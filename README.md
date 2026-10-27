@@ -38,11 +38,34 @@ npm run build
 - Manual and batch face labeling with perspective-correct crops, bundled vanilla reference textures, and grass-tint controls for supported blocks.
 - Manual block-offset alignment with bundled decoration models, discrete XZ/XYZ offsets, and undoable placement. Requires a 3D camera and parity-consistent compass mapping; guessed cardinal directions are accepted. Measurements are saved in `.wcf` projects but are not yet used by the scanners.
 - Reviewable automatic variant proposals, scored in a background worker; only confirmed evidence is used for searching or export.
+- **Automatic detection (this fork):** one click on the Geometry stage finds the camera, field of view, block grid and the rotation of grass, dirt, sand, red sand, podzol, mycelium, rooted dirt, concrete powder, stone, deepslate, bedrock and netherrack faces, using the [TexRotation](#automatic-detection) networks run locally with onnxruntime-web. The result is ordinary geometry plus proposed variants, which still have to be reviewed and confirmed.
 - Search configuration for Vanilla and Sodium texture algorithms, inclusive bounds, quarter-turn directions, error tolerance, and scanner tile settings.
 - Run a compatible parallel CoordsFinder search locally in a WebAssembly worker pool, with pause, stop, exact shard checkpoints, and resumable results.
 - Download or copy an exact `coordsfinder.conf` for the native CoordsFinder CPU/CUDA scanner.
 - Manage multiple local projects, import/export portable `.wcf` bundles, and start from bundled example projects.
 - Installable offline PWA with bundled reference textures and scanner assets.
+
+## Automatic detection
+
+The Geometry stage's **Detect automatically** button runs TexRotation's detector entirely in the
+browser (`src/autodetect/`, worker `src/workers/autodetect.worker.ts`):
+
+1. Two networks (`public/texrot/{lattice,geometry}.onnx`, fp16-stored weights, fp32 compute) run
+   in 1024 px tiles on WebGPU when available (high-performance adapter), WASM otherwise. They
+   predict the face class, a "known texture" mask, a coarse position and the texel-lattice phase
+   of every pixel.
+2. The vertical FOV is estimated from the lattice unless entered; the camera pose (Minecraft has
+   no roll) is found by grid search plus coherence refinement on CPU workers.
+3. Floors, ceilings and walls are resampled at world texel centres and matched against the
+   block template bank (`public/texrot/templates.*`, NCC via `kernels/ncc_best.onnx`); stone-like
+   blocks fix the frame's quarter-turn parity.
+4. The camera becomes a `CameraProjection`, each read face a mesh face with evidence whose
+   variant is **proposed** (never confirmed); world up is known, north is not, so all four
+   directions stay searchable.
+
+The assets are produced by the TexRotation repository (`export_onnx.py`, `export_kernels.py`).
+Tests compare the port with the Python pipeline: `src/autodetect/*.test.ts` always run; the
+real-screenshot comparisons need `TEXROT_PRED_DIR` pointing at `export_pred.py` dumps.
 
 ## Contributing
 

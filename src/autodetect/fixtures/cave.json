@@ -1,0 +1,831 @@
+{
+ "image": "shot10.png",
+ "width": 2560,
+ "height": 1494,
+ "fov": 70.0,
+ "pose": {
+  "yaw": -42.89749485588532,
+  "pitch": 17.398633080327276,
+  "h": 1.618870496749878,
+  "c16x": 0.8415009379386902,
+  "c16z": 0.8691997081041336
+ },
+ "grid": {
+  "ox": 7,
+  "oz": 15
+ },
+ "parity": 1,
+ "directions": [
+  0,
+  180
+ ],
+ "origin": [
+  2,
+  -1,
+  2
+ ],
+ "rows": [
+  {
+   "cell": [
+    4,
+    -1,
+    2
+   ],
+   "face": "up",
+   "kind": "four",
+   "value": 1,
+   "localValue": 3,
+   "parity": 1,
+   "texture": "stone",
+   "ncc": 0.87744140625,
+   "margin": 0.7528076171875,
+   "centroid": [
+    1054.798583984375,
+    710.654052734375
+   ]
+  },
+  {
+   "cell": [
+    2,
+    -1,
+    5
+   ],
+   "face": "up",
+   "kind": "four",
+   "value": 3,
+   "localValue": 1,
+   "parity": 1,
+   "texture": "stone",
+   "ncc": 0.8896484375,
+   "margin": 0.7264404296875,
+   "centroid": [
+    1626.1700439453125,
+    675.9447631835938
+   ]
+  },
+  {
+   "cell": [
+    1,
+    -1,
+    2
+   ],
+   "face": "up",
+   "kind": "four",
+   "value": 2,
+   "localValue": 0,
+   "parity": 1,
+   "texture": "stone",
+   "ncc": 0.865234375,
+   "margin": 0.7398681640625,
+   "centroid": [
+    1518.093017578125,
+    851.9634399414062
+   ]
+  },
+  {
+   "cell": [
+    2,
+    -1,
+    6
+   ],
+   "face": "up",
+   "kind": "four",
+   "value": 1,
+   "localValue": 3,
+   "parity": 1,
+   "texture": "stone",
+   "ncc": 0.86962890625,
+   "margin": 0.735595703125,
+   "centroid": [
+    1690.1580810546875,
+    651.5617065429688
+   ]
+  },
+  {
+   "cell": [
+    3,
+    -1,
+    2
+   ],
+   "face": "up",
+   "kind": "four",
+   "value": 1,
+   "localValue": 3,
+   "parity": 1,
+   "texture": "stone",
+   "ncc": 0.86376953125,
+   "margin": 0.7373046875,
+   "centroid": [
+    1172.1787109375,
+    746.4561157226562
+   ]
+  },
+  {
+   "cell": [
+    5,
+    -1,
+    2
+   ],
+   "face": "up",
+   "kind": "four",
+   "value": 2,
+   "localValue": 0,
+   "parity": 1,
+   "texture": "stone",
+   "ncc": 0.8935546875,
+   "margin": 0.7083740234375,
+   "centroid": [
+    960.1311645507812,
+    681.779541015625
+   ]
+  },
+  {
+   "cell": [
+    2,
+    -1,
+    1
+   ],
+   "face": "up",
+   "kind": "four",
+   "value": 2,
+   "localValue": 0,
+   "parity": 1,
+   "texture": "stone",
+   "ncc": 0.86962890625,
+   "margin": 0.700439453125,
+   "centroid": [
+    1150.196044921875,
+    857.3180541992188
+   ]
+  },
+  {
+   "cell": [
+    2,
+    -1,
+    2
+   ],
+   "face": "up",
+   "kind": "four",
+   "value": 0,
+   "localValue": 2,
+   "parity": 1,
+   "texture": "stone",
+   "ncc": 0.8037109375,
+   "margin": 0.70892333984375,
+   "centroid": [
+    1321.5595703125,
+    792.018798828125
+   ]
+  },
+  {
+   "cell": [
+    4,
+    -1,
+    3
+   ],
+   "face": "up",
+   "kind": "four",
+   "value": 0,
+   "localValue": 2,
+   "parity": 1,
+   "texture": "stone",
+   "ncc": 0.81787109375,
+   "margin": 0.6849365234375,
+   "centroid": [
+    1185.39453125,
+    679.80615234375
+   ]
+  },
+  {
+   "cell": [
+    5,
+    -1,
+    3
+   ],
+   "face": "up",
+   "kind": "four",
+   "value": 0,
+   "localValue": 2,
+   "parity": 1,
+   "texture": "stone",
+   "ncc": 0.814453125,
+   "margin": 0.6859130859375,
+   "centroid": [
+    1088.211181640625,
+    656.357666015625
+   ]
+  },
+  {
+   "cell": [
+    2,
+    -1,
+    0
+   ],
+   "face": "up",
+   "kind": "four",
+   "value": 0,
+   "localValue": 2,
+   "parity": 1,
+   "texture": "stone",
+   "ncc": 0.8095703125,
+   "margin": 0.6885986328125,
+   "centroid": [
+    907.6759643554688,
+    949.7321166992188
+   ]
+  },
+  {
+   "cell": [
+    1,
+    -1,
+    3
+   ],
+   "face": "up",
+   "kind": "four",
+   "value": 2,
+   "localValue": 0,
+   "parity": 1,
+   "texture": "stone",
+   "ncc": 0.8095703125,
+   "margin": 0.68524169921875,
+   "centroid": [
+    1634.27783203125,
+    788.1130981445312
+   ]
+  },
+  {
+   "cell": [
+    1,
+    -1,
+    4
+   ],
+   "face": "up",
+   "kind": "four",
+   "value": 2,
+   "localValue": 0,
+   "parity": 1,
+   "texture": "stone",
+   "ncc": 0.80615234375,
+   "margin": 0.68414306640625,
+   "centroid": [
+    1721.00146484375,
+    740.453369140625
+   ]
+  },
+  {
+   "cell": [
+    5,
+    -1,
+    4
+   ],
+   "face": "up",
+   "kind": "four",
+   "value": 0,
+   "localValue": 2,
+   "parity": 1,
+   "texture": "stone",
+   "ncc": 0.80322265625,
+   "margin": 0.6727294921875,
+   "centroid": [
+    1194.2161865234375,
+    635.3173828125
+   ]
+  },
+  {
+   "cell": [
+    3,
+    -1,
+    1
+   ],
+   "face": "up",
+   "kind": "four",
+   "value": 1,
+   "localValue": 3,
+   "parity": 1,
+   "texture": "stone",
+   "ncc": 0.8037109375,
+   "margin": 0.6683349609375,
+   "centroid": [
+    1002.27490234375,
+    796.0065307617188
+   ]
+  },
+  {
+   "cell": [
+    1,
+    -1,
+    1
+   ],
+   "face": "up",
+   "kind": "four",
+   "value": 2,
+   "localValue": 0,
+   "parity": 1,
+   "texture": "stone",
+   "ncc": 0.79296875,
+   "margin": 0.664794921875,
+   "centroid": [
+    1354.36279296875,
+    941.942626953125
+   ]
+  },
+  {
+   "cell": [
+    4,
+    -1,
+    1
+   ],
+   "face": "up",
+   "kind": "four",
+   "value": 2,
+   "localValue": 0,
+   "parity": 1,
+   "texture": "stone",
+   "ncc": 0.8212890625,
+   "margin": 0.63916015625,
+   "centroid": [
+    890.1704711914062,
+    749.5405883789062
+   ]
+  },
+  {
+   "cell": [
+    5,
+    -1,
+    1
+   ],
+   "face": "up",
+   "kind": "four",
+   "value": 0,
+   "localValue": 2,
+   "parity": 1,
+   "texture": "stone",
+   "ncc": 0.7861328125,
+   "margin": 0.659423828125,
+   "centroid": [
+    802.279052734375,
+    713.1107177734375
+   ]
+  },
+  {
+   "cell": [
+    6,
+    -1,
+    1
+   ],
+   "face": "up",
+   "kind": "four",
+   "value": 3,
+   "localValue": 1,
+   "parity": 1,
+   "texture": "stone",
+   "ncc": 0.7783203125,
+   "margin": 0.6268310546875,
+   "centroid": [
+    731.520751953125,
+    683.7822875976562
+   ]
+  },
+  {
+   "cell": [
+    1,
+    -1,
+    5
+   ],
+   "face": "up",
+   "kind": "four",
+   "value": 0,
+   "localValue": 2,
+   "parity": 1,
+   "texture": "stone",
+   "ncc": 0.7890625,
+   "margin": 0.6121826171875,
+   "centroid": [
+    1788.2091064453125,
+    703.5189819335938
+   ]
+  },
+  {
+   "cell": [
+    0,
+    -1,
+    5
+   ],
+   "face": "up",
+   "kind": "four",
+   "value": 0,
+   "localValue": 2,
+   "parity": 1,
+   "texture": "stone",
+   "ncc": 0.7666015625,
+   "margin": 0.6287841796875,
+   "centroid": [
+    1988.08642578125,
+    737.5321044921875
+   ]
+  },
+  {
+   "cell": [
+    1,
+    -1,
+    6
+   ],
+   "face": "up",
+   "kind": "four",
+   "value": 3,
+   "localValue": 1,
+   "parity": 1,
+   "texture": "stone",
+   "ncc": 0.75,
+   "margin": 0.6322021484375,
+   "centroid": [
+    1841.82177734375,
+    674.0556030273438
+   ]
+  },
+  {
+   "cell": [
+    0,
+    -1,
+    2
+   ],
+   "face": "up",
+   "kind": "four",
+   "value": 0,
+   "localValue": 2,
+   "parity": 1,
+   "texture": "stone",
+   "ncc": 0.779296875,
+   "margin": 0.6053466796875,
+   "centroid": [
+    1788.2880859375,
+    934.3756713867188
+   ]
+  },
+  {
+   "cell": [
+    3,
+    -1,
+    0
+   ],
+   "face": "up",
+   "kind": "four",
+   "value": 1,
+   "localValue": 3,
+   "parity": 1,
+   "texture": "stone",
+   "ncc": 0.736328125,
+   "margin": 0.609130859375,
+   "centroid": [
+    773.229736328125,
+    862.8047485351562
+   ]
+  },
+  {
+   "cell": [
+    4,
+    -1,
+    0
+   ],
+   "face": "up",
+   "kind": "four",
+   "value": 0,
+   "localValue": 2,
+   "parity": 1,
+   "texture": "stone",
+   "ncc": 0.73193359375,
+   "margin": 0.6048583984375,
+   "centroid": [
+    676.2144775390625,
+    800.078857421875
+   ]
+  },
+  {
+   "cell": [
+    0,
+    -1,
+    3
+   ],
+   "face": "up",
+   "kind": "four",
+   "value": 2,
+   "localValue": 0,
+   "parity": 1,
+   "texture": "stone",
+   "ncc": 0.7197265625,
+   "margin": 0.60797119140625,
+   "centroid": [
+    1877.243408203125,
+    846.736083984375
+   ]
+  },
+  {
+   "cell": [
+    0,
+    -1,
+    4
+   ],
+   "face": "up",
+   "kind": "four",
+   "value": 3,
+   "localValue": 1,
+   "parity": 1,
+   "texture": "stone",
+   "ncc": 0.71533203125,
+   "margin": 0.60223388671875,
+   "centroid": [
+    1940.630126953125,
+    784.2869262695312
+   ]
+  },
+  {
+   "cell": [
+    6,
+    -1,
+    2
+   ],
+   "face": "up",
+   "kind": "four",
+   "value": 3,
+   "localValue": 1,
+   "parity": 1,
+   "texture": "stone",
+   "ncc": 0.7412109375,
+   "margin": 0.550537109375,
+   "centroid": [
+    882.1657104492188,
+    657.999267578125
+   ]
+  },
+  {
+   "cell": [
+    5,
+    -1,
+    0
+   ],
+   "face": "up",
+   "kind": "four",
+   "value": 2,
+   "localValue": 0,
+   "parity": 1,
+   "texture": "stone",
+   "ncc": 0.72265625,
+   "margin": 0.5626220703125,
+   "centroid": [
+    602.908935546875,
+    752.6826171875
+   ]
+  },
+  {
+   "cell": [
+    1,
+    -1,
+    0
+   ],
+   "face": "up",
+   "kind": "four",
+   "value": 0,
+   "localValue": 2,
+   "parity": 1,
+   "texture": "stone",
+   "ncc": 0.7021484375,
+   "margin": 0.5762939453125,
+   "centroid": [
+    1106.3948974609375,
+    1078.21533203125
+   ]
+  },
+  {
+   "cell": [
+    0,
+    -1,
+    6
+   ],
+   "face": "up",
+   "kind": "four",
+   "value": 0,
+   "localValue": 2,
+   "parity": 1,
+   "texture": "stone",
+   "ncc": 0.72021484375,
+   "margin": 0.5478515625,
+   "centroid": [
+    2024.947998046875,
+    701.2157592773438
+   ]
+  },
+  {
+   "cell": [
+    0,
+    -1,
+    1
+   ],
+   "face": "up",
+   "kind": "four",
+   "value": 0,
+   "localValue": 2,
+   "parity": 1,
+   "texture": "stone",
+   "ncc": 0.6806640625,
+   "margin": 0.54052734375,
+   "centroid": [
+    1654.3853759765625,
+    1066.2982177734375
+   ]
+  },
+  {
+   "cell": [
+    2,
+    -1,
+    -1
+   ],
+   "face": "up",
+   "kind": "four",
+   "value": 3,
+   "localValue": 1,
+   "parity": 1,
+   "texture": "stone",
+   "ncc": 0.59033203125,
+   "margin": 0.4979248046875,
+   "centroid": [
+    538.0659790039062,
+    1090.57470703125
+   ]
+  },
+  {
+   "cell": [
+    5,
+    -1,
+    -1
+   ],
+   "face": "up",
+   "kind": "four",
+   "value": 2,
+   "localValue": 0,
+   "parity": 1,
+   "texture": "stone",
+   "ncc": 0.5927734375,
+   "margin": 0.463134765625,
+   "centroid": [
+    343.16064453125,
+    804.2385864257812
+   ]
+  },
+  {
+   "cell": [
+    3,
+    -1,
+    6
+   ],
+   "face": "up",
+   "kind": "four",
+   "value": 1,
+   "localValue": 3,
+   "parity": 1,
+   "texture": "stone",
+   "ncc": 0.60009765625,
+   "margin": 0.4544677734375,
+   "centroid": [
+    1562.489990234375,
+    632.626708984375
+   ]
+  },
+  {
+   "cell": [
+    4,
+    -1,
+    -1
+   ],
+   "face": "up",
+   "kind": "four",
+   "value": 2,
+   "localValue": 0,
+   "parity": 1,
+   "texture": "stone",
+   "ncc": 0.5888671875,
+   "margin": 0.45458984375,
+   "centroid": [
+    386.85382080078125,
+    868.4284057617188
+   ]
+  },
+  {
+   "cell": [
+    3,
+    -1,
+    -1
+   ],
+   "face": "up",
+   "kind": "four",
+   "value": 0,
+   "localValue": 2,
+   "parity": 1,
+   "texture": "stone",
+   "ncc": 0.5791015625,
+   "margin": 0.4415283203125,
+   "centroid": [
+    447.65673828125,
+    957.7540893554688
+   ]
+  },
+  {
+   "cell": [
+    6,
+    -1,
+    3
+   ],
+   "face": "up",
+   "kind": "four",
+   "value": 2,
+   "localValue": 0,
+   "parity": 1,
+   "texture": "stone",
+   "ncc": 0.55615234375,
+   "margin": 0.44903564453125,
+   "centroid": [
+    1006.68701171875,
+    636.6874389648438
+   ]
+  },
+  {
+   "cell": [
+    6,
+    -1,
+    0
+   ],
+   "face": "up",
+   "kind": "four",
+   "value": 0,
+   "localValue": 2,
+   "parity": 1,
+   "texture": "stone",
+   "ncc": 0.53857421875,
+   "margin": 0.412109375,
+   "centroid": [
+    545.5678100585938,
+    715.6082153320312
+   ]
+  },
+  {
+   "cell": [
+    0,
+    -1,
+    0
+   ],
+   "face": "up",
+   "kind": "four",
+   "value": 0,
+   "localValue": 2,
+   "parity": 1,
+   "texture": "stone",
+   "ncc": 0.52099609375,
+   "margin": 0.378173828125,
+   "centroid": [
+    1429.951416015625,
+    1287.4134521484375
+   ]
+  }
+ ],
+ "config": [
+  "0 0 2 | 1",
+  "-3 0 0 | 3",
+  "0 0 -1 | 2",
+  "-4 0 0 | 1",
+  "0 0 1 | 1",
+  "0 0 3 | 2",
+  "1 0 0 | 2",
+  "0 0 0 | 0",
+  "-1 0 2 | 0",
+  "-1 0 3 | 0",
+  "2 0 0 | 0",
+  "-1 0 -1 | 2",
+  "-2 0 -1 | 2",
+  "-2 0 3 | 0",
+  "1 0 1 | 1",
+  "1 0 -1 | 2",
+  "1 0 2 | 2",
+  "1 0 3 | 0",
+  "1 0 4 | 3",
+  "-3 0 -1 | 0",
+  "-3 0 -2 | 0",
+  "-4 0 -1 | 3",
+  "0 0 -2 | 0",
+  "2 0 1 | 1",
+  "2 0 2 | 0",
+  "-1 0 -2 | 2",
+  "-2 0 -2 | 3",
+  "0 0 4 | 3",
+  "2 0 3 | 2",
+  "2 0 -1 | 0",
+  "-4 0 -2 | 0",
+  "1 0 -2 | 0",
+  "3 0 0 | 3",
+  "3 0 3 | 2",
+  "-4 0 1 | 1",
+  "3 0 2 | 2",
+  "3 0 1 | 0",
+  "-1 0 4 | 2",
+  "2 0 4 | 0",
+  "2 0 -2 | 0"
+ ]
+}
